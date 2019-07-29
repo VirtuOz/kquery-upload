@@ -208,7 +208,8 @@ async function initializeBrowser() {
         });
     } else {
         return await puppeteer.launch({
-            headless: true
+            headless: true,
+            args: ['--no-sandbox']
         });
     }
 }
