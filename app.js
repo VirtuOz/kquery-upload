@@ -233,7 +233,7 @@ async function getPage(browser, cookies) {
 async function login(config, page, loginInfo) {
     _logDebug('Logging in the old fashioned way!');
     await page.goto(`https://iqstudio.${config.IQSHost}.com`);
-    await page.waitForNavigation({waitUntil: 'networkidle0'});
+    // await page.waitForNavigation({waitUntil: 'networkidle0'});
     await page.type("#username", loginInfo.username);
     await page.type("#password", loginInfo.password);
     await page.click("#neam-login-button");
