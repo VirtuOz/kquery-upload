@@ -2,19 +2,19 @@
   "name": "kquery-upload",
   "version": "1.0.0",
   "description": "",
+  "license": "ISC",
+  "author": "",
   "main": "app.js",
   "scripts": {
     "test": "node app.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
-    "expect-puppeteer": "^4.1.1",
-    "inquirer": "^6.3.1",
+    "expect-puppeteer": "^4.3.0",
+    "inquirer": "^6.5.0",
     "magic-cookie": "0.0.5",
     "mkdirp": "^0.5.1",
-    "puppeteer": "^1.17.0",
+    "puppeteer": "^1.19.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }

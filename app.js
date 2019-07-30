@@ -597,12 +597,12 @@ async function getLogInCookies(config) {
 
 function run(config) {
     return new Promise(async (resolve, reject) => {
+        let browser;
         try {
             // let logInCookies = await getLogInCookies(config);
             // let browser = await initializeBrowser();
             // let page = await getPage(browser, logInCookies);
-
-            let browser = await initializeBrowser();
+            browser = await initializeBrowser();
             let page = await getPage(browser);
             await login(config, page, await getCredentials(config));
             let sessionInfo = await goToAndCheck(config, page);
@@ -614,6 +614,7 @@ function run(config) {
             browser.close();
             return resolve();
         } catch (e) {
+            browser.close();
             return reject(e);
         }
     })
