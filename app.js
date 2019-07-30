@@ -9,6 +9,7 @@ const axios = require('axios');
 const inquirer = require('inquirer');
 const rp = require('request-promise');
 const {MemoryCookieStore} = require('magic-cookie');
+// const argv = require('minimist')(process.argv.slice(2));
 
 // const ui = new inquirer.ui.BottomBar();
 function delay(timeout) {
@@ -230,9 +231,9 @@ async function getPage(browser, cookies) {
 }
 
 async function login(config, page, loginInfo) {
-    _logDebug('Logging In Old Fashion');
+    _logDebug('Logging in the old fashioned way!');
     await page.goto(`https://iqstudio.${config.IQSHost}.com`);
-    // await page.waitForNavigation({waitUntil: 'networkidle0'});
+    await page.waitForNavigation({waitUntil: 'networkidle0'});
     await page.type("#username", loginInfo.username);
     await page.type("#password", loginInfo.password);
     await page.click("#neam-login-button");
@@ -597,15 +598,13 @@ async function getLogInCookies(config) {
 function run(config) {
     return new Promise(async (resolve, reject) => {
         try {
-            let logInCookies = await getLogInCookies(config);
+            // let logInCookies = await getLogInCookies(config);
+            // let browser = await initializeBrowser();
+            // let page = await getPage(browser, logInCookies);
+
             let browser = await initializeBrowser();
-            let page = await getPage(browser, logInCookies);
-            if (!logInCookies) {
-                _logDebug("Something didn't work with the login api");
-                _logDebug("Using login page instead");
-                // await goToDefaultPage(config, page);
-                await login(config, page, await getCredentials(config));
-            }
+            let page = await getPage(browser);
+            await login(config, page, await getCredentials(config));
             let sessionInfo = await goToAndCheck(config, page);
             let packageList = await getPackageList(page);
             await deletePackageCheck(config, packageList, browser, page, sessionInfo.agent);
